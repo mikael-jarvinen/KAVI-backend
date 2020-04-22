@@ -28,6 +28,7 @@ const typeDefs = gql`
     vol: String!
     KAVI: String!
     url: String!
+    img: String!
     comments: [Comment!]!
   }
 
@@ -60,11 +61,13 @@ const resolvers = {
   }
 }
 
+const PORT = process.env.PORT
+
 const server = new ApolloServer({
   typeDefs,
   resolvers
 })
 
-server.listen().then(({ url }) => {
+server.listen({ port: PORT}).then(({ url }) => {
   console.log(`Server ready at ${url}`)
 })

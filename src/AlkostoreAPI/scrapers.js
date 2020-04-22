@@ -27,6 +27,7 @@ const pageScrape = async page => {
       let url = item.querySelector('.product-image')
         .querySelector('a').href
 
+      const img = item.querySelector('img').src
       let postage = 0
       switch (volume) {
       case (12):
@@ -61,7 +62,8 @@ const pageScrape = async page => {
         volume,
         vol,
         KAVI,
-        url
+        url,
+        img
       }
     })
     return listItems = listItems.filter(item => item !== undefined)
