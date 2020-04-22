@@ -1,0 +1,25 @@
+{
+  "name": "kavibackend",
+  "version": "1.0.0",
+  "description": "backend of the Kavi website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "./node_modules/.bin/eslint",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "author": "Mikael Järvinen",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.3"
+  },
+  "dependencies": {
+    "apollo-server": "^2.12.0",
+    "bcrypt": "^4.0.1",
+    "graphql": "^15.0.0",
+    "puppeteer": "^3.0.0",
+    "uuid": "^7.0.3"
+  }
+}
