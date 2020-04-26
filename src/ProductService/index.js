@@ -41,7 +41,6 @@ const addComment = (target, comment) => {
       }
       return p
     })
-    newProducts[key].push(product)
     data = newProducts
     writeToFile()
     return product
