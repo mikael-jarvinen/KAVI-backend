@@ -57,20 +57,25 @@ const findById = (id) => {
   }
 }
 
-getProducts()
-  .then(result => {
-    result.beers = setComments(result.beers, data.beers)
-    result.boxWines = setComments(result.boxWines, data.boxWines)
-    result.ciders = setComments(result.ciders, data.boxWines)
-    result.effervescents = setComments(result.effervescents, data.effervescents)
-    result.spirits = setComments(result.spirits, data.spirits)
-    result.veganWines = setComments(result.veganWines, data.veganWines)
-    result.wines = setComments(result.wines, data.wines)
+const fetch = () => {
+  getProducts()
+    .then(result => {
+      result.beers = setComments(result.beers, data.beers)
+      result.boxWines = setComments(result.boxWines, data.boxWines)
+      result.ciders = setComments(result.ciders, data.boxWines)
+      result.effervescents = setComments(result.effervescents, data.effervescents)
+      result.spirits = setComments(result.spirits, data.spirits)
+      result.veganWines = setComments(result.veganWines, data.veganWines)
+      result.wines = setComments(result.wines, data.wines)
 
-    data = result
-    writeToFile()
-    console.log('Products refreshed')
-  })
+      data = result
+      writeToFile()
+      console.log('Products refreshed')
+    })
+  setTimeout(fetch, 21600000)
+}
+
+fetch()
 
 const products = () => {
   return data
