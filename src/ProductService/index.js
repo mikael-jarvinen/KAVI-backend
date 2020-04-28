@@ -72,7 +72,7 @@ const fetch = () => {
       writeToFile()
       console.log('Products refreshed')
     })
-  setTimeout(fetch, 21600000)
+  setTimeout(fetch, 900000)
 }
 
 fetch()
