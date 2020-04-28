@@ -1,65 +1,20 @@
-const { ApolloServer, gql } = require('apollo-server')
-const { products, addComment, findById } = require('./ProductService')
+const { ApolloServer } = require('apollo-server-express')
+const typeDefs = require('./typeDefs')
+const resolvers = require('./resolvers')
+const express = require('express')  //Express is used for static fileserving
+const app = express()
+const path = require('path')
 
-const typeDefs = gql`
-  type Query {
-    allBeers: [Product!]!
-    allCiders: [Product!]!
-    allSpirits: [Product!]!
-    allEffervescents: [Product!]!
-    allBoxWines: [Product!]!
-    allWines: [Product!]!
-    allVeganWines: [Product!]!
-    product(id: ID!): Product!
-  }
+app.use(express.static('build'))
 
-  type Comment {
-    date: String!
-    author: String!
-    message: String!
-  }
-
-  type Product {
-    id: ID!
-    name: String!
-    price: String!
-    postage: String!
-    volume: String!
-    vol: String!
-    KAVI: String!
-    url: String!
-    img: String!
-    comments: [Comment!]!
-  }
-
-  type Mutation {
-    addComment(
-      id: ID!
-      author: String!
-      message: String!
-    ): Product
-  }
-`
-
-const resolvers = {
-  Query: {
-    allBeers: () => products().beers,
-    allCiders: () => products().ciders,
-    allSpirits: () => products().spirits,
-    allEffervescents: () => products().effervescents,
-    allBoxWines: () => products().boxWines,
-    allWines: () => products().wines,
-    allVeganWines: () => products().veganWines,
-    product: (root, args) => findById(args.id)
-  },
-  Mutation: {
-    addComment: (root, args) => addComment(args.id, {
-      date: new Date(),
-      author: args.author,
-      message: args.message
-    })
-  }
-}
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'), err => {
+    if (err) {
+      res.status(500).send(err)
+      console.log(err)
+    }
+  })
+})
 
 const PORT = process.env.PORT
 
@@ -68,6 +23,8 @@ const server = new ApolloServer({
   resolvers
 })
 
-server.listen({ port: PORT}).then(({ url }) => {
-  console.log(`Server ready at ${url}`)
+server.applyMiddleware({ app })
+
+app.listen({ port: PORT}, () => {
+  console.log(`Apollo server ready at http://localhost:${PORT}${server.graphqlPath}`)
 })

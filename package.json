@@ -6,12 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "./node_modules/.bin/eslint",
-    "start": "cross-env PORT=5000 NODE_ENV=production node src/index.js",
+    "start": "cross-env PORT=80 NODE_ENV=production node src/index.js",
     "dev": "cross-env PORT=5000 nodemon src/index.js"
   },
   "author": "Mikael Järvinen",
   "license": "ISC",
   "devDependencies": {
+    "apollo-server-express": "^2.12.0",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
     "nodemon": "^2.0.3"
@@ -19,6 +20,7 @@
   "dependencies": {
     "apollo-server": "^2.12.0",
     "bcrypt": "^4.0.1",
+    "express": "^4.17.1",
     "graphql": "^15.0.0",
     "puppeteer": "^3.0.0",
     "uuid": "^7.0.3"
