@@ -16,14 +16,14 @@ const pageScrape = async page => {
         .innerText.slice(0, -2).replace(/[,]/, '.'))
       const volume = Number(item.querySelector('.info.unit')
         .innerText.substring(8).slice(0, -1))
-      let tempVol = 0
+      let tempVol = '0'
       try {
-        tempVol = Number(item.querySelector('.info.vol')
-          .innerText.substring(4).slice(0, -1))
+        tempVol = item.querySelector('.info.vol')
+          .innerText.substring(4).slice(0, -1)
       } catch (e) {
-        tempVol = 0
+        tempVol = '0'
       }
-      const vol = tempVol
+      const vol = Number(tempVol.replace(/[,]/, '.'))
       let url = item.querySelector('.product-image')
         .querySelector('a').href
 
