@@ -10,6 +10,7 @@ const typeDefs = gql`
     allWines: [Product!]!
     allVeganWines: [Product!]!
     product(id: ID!): Product!
+    searchProducts(search: String!): [Product!]!
   }
 
   type Comment {

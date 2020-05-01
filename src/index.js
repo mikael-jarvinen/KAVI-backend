@@ -5,6 +5,15 @@ const express = require('express')  //Express is used for static fileserving
 const app = express()
 const path = require('path')
 
+const PORT = process.env.PORT
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+})
+
+server.applyMiddleware({ app })
+
 app.use(express.static('build'))
 
 app.get('/*', (req, res) => {
@@ -15,15 +24,6 @@ app.get('/*', (req, res) => {
     }
   })
 })
-
-const PORT = process.env.PORT
-
-const server = new ApolloServer({
-  typeDefs,
-  resolvers
-})
-
-server.applyMiddleware({ app })
 
 app.listen({ port: PORT}, () => {
   console.log(`Apollo server ready at http://localhost:${PORT}${server.graphqlPath}`)
