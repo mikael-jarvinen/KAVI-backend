@@ -29,7 +29,7 @@ const resolvers = {
   },
   Mutation: {
     addComment: (root, args) => addComment(args.id, {
-      date: new Date(),
+      date: new Date().toString(),
       author: args.author,
       message: args.message
     })
