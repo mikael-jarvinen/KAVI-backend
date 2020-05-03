@@ -15,6 +15,15 @@ const server = new ApolloServer({
 server.applyMiddleware({ app })
 
 app.use(express.static('build'))
+app.use(express.json())
+
+//Route for handling requests made with the kavi-extension
+app.post('/drive', ({ body }, res) => {
+  if (!body.product || !body.price || !body.postage) {
+    return res.status(500).send({ error: 'Missing product fields' })
+  }
+  return res.send(`name: ${body.product}, price: ${body.price}, postage: ${body.postage}`)
+})
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../build/index.html'), err => {
