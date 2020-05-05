@@ -1,5 +1,6 @@
 const { gql } = require('apollo-server-express')
 
+//addOrder mutation is for the hidden functionality in frontend
 const typeDefs = gql`
   type Query {
     allBeers: [Product!]!
@@ -38,6 +39,12 @@ const typeDefs = gql`
       author: String!
       message: String!
     ): Product
+    addOrder(
+      author: String!
+      product: String!
+      price: String!
+      postage: String!
+    ): Boolean
   }
 `
 

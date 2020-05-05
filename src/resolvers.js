@@ -1,4 +1,5 @@
 const { products, addComment, findById } = require('./ProductService')
+const { postOrder } = require('./sheetsApi')
 
 const resolvers = {
   Query: {
@@ -32,7 +33,20 @@ const resolvers = {
       date: new Date().toString(),
       author: args.author,
       message: args.message
-    })
+    }),
+    addOrder: (root, args) => {
+      try {
+        postOrder(
+          args.author,
+          args.product,
+          args.price,
+          args.postage
+        )
+        return true
+      } catch (e) {
+        return false
+      }
+    }
   }
 }
 
