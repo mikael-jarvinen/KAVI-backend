@@ -4,16 +4,16 @@ const creds = require('../client_secret.json')
 
 const postOrder = async (author, product, price, postage) => {
   switch (postage) {
-  case '2.17€':
+  case '2.17':
     postage = 1
     break
-  case '4.34€':
+  case '4.34':
     postage = 2
     break
-  case '8.7€':
+  case '8.7':
     postage = 4
     break
-  case '13€':
+  case '13':
     postage = 6
     break
   }
@@ -67,7 +67,7 @@ const postOrder = async (author, product, price, postage) => {
 
   workingCell.value = author
   nameCell.value = product
-  priceCell.value = price
+  priceCell.value = `${price}€`
   postageCell.value = postage
 
   await sheet.saveUpdatedCells()
