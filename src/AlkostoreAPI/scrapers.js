@@ -39,6 +39,9 @@ const pageScrape = async page => {
       case (5):
         postage = 8.7
         break
+      case (3.96):
+	postage = 4.34
+	break
       case (3):
         postage = 4.34
         break
@@ -83,3 +86,4 @@ const nextPage = async page => {
 }
 
 module.exports = { pageScrape, nextPage }
+
