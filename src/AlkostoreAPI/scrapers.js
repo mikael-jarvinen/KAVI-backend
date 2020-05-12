@@ -33,6 +33,9 @@ const pageScrape = async page => {
       case (12):
         postage = 13
         break
+      case (10.56):
+	postage = 13
+	break
       case (7.92):
         postage = 8.7
         break
