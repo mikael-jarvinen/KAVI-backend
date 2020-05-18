@@ -12,7 +12,7 @@ const pageScrape = async page => {
     listItems = listItems.map(item => {
       const name = item.querySelector('.product-name')
         .innerText
-      const price = Number(item.querySelector('.price-box')
+      const price = Number(item.querySelectorAll('.price')[1]
         .innerText.slice(0, -2).replace(/[,]/, '.'))
       const volume = Number(item.querySelector('.info.unit')
         .innerText.substring(8).slice(0, -1))
