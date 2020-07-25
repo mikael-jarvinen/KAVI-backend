@@ -2,7 +2,7 @@ const { GoogleSpreadsheet } = require('google-spreadsheet')
 
 const creds = require('../client_secret.json')
 
-const postOrder = async (author, product, price, postage) => {
+const postOrder = async (author, product, price, postage, url) => {
   switch (postage) {
   case '2.17':
     postage = 1
@@ -66,7 +66,7 @@ const postOrder = async (author, product, price, postage) => {
   let postageCell = sheet.getCell(nameCell.rowIndex, 3)
 
   workingCell.value = author
-  nameCell.value = product
+  nameCell.value = `=HYPERLINK("${url}", "${product}")`
   priceCell.value = `${price}€`
   postageCell.value = postage
 

@@ -44,6 +44,7 @@ const typeDefs = gql`
       product: String!
       price: String!
       postage: String!
+      url: String!
     ): Boolean
   }
 `

@@ -40,7 +40,8 @@ const resolvers = {
           args.author,
           args.product,
           args.price,
-          args.postage
+          args.postage,
+          args.url
         )
         return true
       } catch (e) {
