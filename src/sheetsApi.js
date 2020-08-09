@@ -67,7 +67,7 @@ const postOrder = async (author, product, price, postage, url) => {
 
   workingCell.value = author
   nameCell.value = `=HYPERLINK("${url}", "${product}")`
-  priceCell.value = `${price}€`
+  priceCell.value = `="${price}€"`
   postageCell.value = postage
 
   await sheet.saveUpdatedCells()
